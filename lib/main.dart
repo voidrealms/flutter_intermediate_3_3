@@ -62,7 +62,8 @@ class _State extends State<MyApp> {
           child: new Column(
             children: <Widget>[
               new Text('Sales Data'),
-              new Expanded(child: new charts.PieChart<Sales,int>(
+              //new Expanded(child: new charts.PieChart<Sales,int>( //old version
+              new Expanded(child: new charts.PieChart<dynamic>( //new version
                 _chartdata,
                 animate: true,
                 animationDuration: new Duration(seconds: 5)
