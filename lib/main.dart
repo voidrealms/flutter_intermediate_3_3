@@ -22,12 +22,14 @@ class Sales {
 
 class _State extends State<MyApp> {
 
-  List<Sales> _data;
-  List<charts.Series<Sales, int>> _chartdata;
+  List<Sales> _data = [];
+  List<charts.Series<Sales, int>> _chartdata = [];
 
 
   void _makeData() {
-    _chartdata = new List<charts.Series<Sales, int>>();
+
+
+    _chartdata = <charts.Series<Sales, int>>[];
     _data = <Sales>[
       new Sales(0,100, charts.MaterialPalette.red.shadeDefault),
       new Sales(1,75, charts.MaterialPalette.blue.shadeDefault),
@@ -36,11 +38,11 @@ class _State extends State<MyApp> {
     ];
 
     _chartdata.add(new charts.Series(
-        id: 'Sales',
-        data: _data,
-        colorFn: (Sales sales,_) => sales.color,
-        domainFn: (Sales sales,_) => sales.year,
-        measureFn: (Sales sales,_) => sales.sales,
+      id: 'Sales',
+      data: _data,
+      colorFn: (Sales sales,_) => sales.color,
+      domainFn: (Sales sales,_) => sales.year,
+      measureFn: (Sales sales,_) => sales.sales,
     ));
   }
 
@@ -57,21 +59,21 @@ class _State extends State<MyApp> {
         title: new Text('Name here'),
       ),
       body: new Container(
-        padding: new EdgeInsets.all(32.0),
-        child: new Center(
-          child: new Column(
-            children: <Widget>[
-              new Text('Sales Data'),
-              //new Expanded(child: new charts.PieChart<Sales,int>( //old version
-              new Expanded(child: new charts.PieChart<dynamic>( //new version
-                _chartdata,
-                animate: true,
-                animationDuration: new Duration(seconds: 5)
-              )),
+          padding: new EdgeInsets.all(32.0),
+          child: new Center(
+            child: new Column(
+              children: <Widget>[
+                new Text('Sales Data'),
+                //new Expanded(child: new charts.PieChart<Sales,int>( //old version
+                new Expanded(child: new charts.PieChart<dynamic>( //new version
+                    _chartdata,
+                    animate: true,
+                    animationDuration: new Duration(seconds: 5)
+                )),
 
-            ],
-          ),
-        )
+              ],
+            ),
+          )
       ),
     );
   }
